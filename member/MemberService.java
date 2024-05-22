@@ -1,9 +1,8 @@
 package com.example.demo.member;
 
-import com.example.demo.product.Product;
 import lombok.AllArgsConstructor;
-import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -11,14 +10,19 @@ public class MemberService {
 
     MemberRepository memberRepository;
 
-//    public void makeConnection() { memberRepository.makeConnection(); }
-
+    @Transactional
     public String join(Member member) {
-        return memberRepository.save(member);
+        memberRepository.save(member);
+
+        String userId = memberRepository
+                .findByUserId(member.getUserId())
+                .getUserId();
+
+        return userId;
     }
 
     public boolean checkDuplicateId(String userId) {
-        Member existMember = memberRepository.findById(userId);
+        Member existMember = memberRepository.findByUserId(userId);
 
         if (existMember == null)
             return false;

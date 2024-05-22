@@ -17,15 +17,9 @@ import static com.example.demo.utils.ApiUtils.success;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@Getter
 public class MemberController {
 
     MemberService memberService;
-
-//    @GetMapping("/datasource")
-//    public void makeConnection() {
-//        memberService.makeConnection();
-//    }
 
     @PostMapping("/join")
     public ApiUtils.ApiResult join(@Valid @RequestBody MemberDto memberDto) {
