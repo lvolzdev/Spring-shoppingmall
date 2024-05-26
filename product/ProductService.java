@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@AllArgsConstructor // 필드로 생성자 코드 구현
+@AllArgsConstructor
 public class ProductService {
-    ProductRepository productRepository;
+    ProductJPARepository productJPARepository;
 
     public Product registerProduct(Product product) {
         System.out.println(
@@ -29,11 +29,11 @@ public class ProductService {
         return productRepository.findProducts(limit, currentPage, categoryId);
     }
 
-    public void deleteProduct(int id) {
-        productRepository.deleteProduct(id);
-    }
-
-    public void deleteProducts(List<Integer> productIds) {
-        productRepository.deleteProducts(productIds);
-    }
+//    public void deleteProduct(int id) {
+//        productRepository.deleteProduct(id);
+//    }
+//
+//    public void deleteProducts(List<Integer> productIds) {
+//        productRepository.deleteProducts(productIds);
+//    }
 }
